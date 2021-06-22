@@ -1,0 +1,17 @@
+spring:
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:8848
+        namespace: af880709-bcd3-403b-bcef-3aab88ab60ae
+        ext-config[0].data-id: oss.yml
+        ext-config[0].group: DEFAULT_GROUP
+        ext-config[0].refresh: true
+  application:
+    name: gulimall-third-party
+
+
+
+
+
+

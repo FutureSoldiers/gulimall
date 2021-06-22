@@ -1,0 +1,37 @@
+spring:
+  redis:
+    host: 192.168.119.148
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://192.168.119.148:3306/gulimall_ums
+    driver-class-name: com.mysql.jdbc.Driver
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  application:
+    name: gulimall-member
+
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type:
+server:
+  port: 8002
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

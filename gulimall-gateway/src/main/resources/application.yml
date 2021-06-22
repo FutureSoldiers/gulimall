@@ -1,0 +1,107 @@
+spring:
+  application:
+    name: gulimall-gateway
+  cloud:
+    sentinel:
+       transport:
+        dashboard: localhost:8333
+        port: 8719
+       scg:
+        fallback:
+         mode: response
+         response-status: 455
+         response-body: error!
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    gateway:
+      routes:
+#        - id: test_route
+                           ##          uri: https://www.baidu.com
+                           ##          predicates:
+                           ##            - Query=url,baidu
+                           ##        - id: qq_route
+                           ##          uri: https://www.qq.com
+                           ##          predicates:
+                           ##            - Query=url,qq
+
+        - id: product_route
+          uri: lb://gulimall-product
+          predicates:
+            - Path=/api/product/**,/hello
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+        - id: coupon_route
+          uri: lb://gulimall-coupon
+          predicates:
+            - Path=/api/coupon/**
+          filters:
+           - RewritePath=/api/(?<segment>.*),/$\{segment}
+
+        - id: third_party_route
+          uri: lb://gulimall-third-party
+          predicates:
+            - Path=/api/thirdparty/**
+          filters:
+            - RewritePath=/api/thirdparty/(?<segment>.*),/$\{segment}
+
+        - id: member_route
+          uri: lb://gulimall-member
+          predicates:
+            - Path=/api/member/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+        - id: ware_route
+          uri: lb://gulimall-ware
+          predicates:
+            - Path=/api/ware/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/$\{segment}
+
+        - id: admin_route
+          uri: lb://renren-fast
+          predicates:
+            - Path=/api/**
+          filters:
+            - RewritePath=/api/(?<segment>.*),/renren-fast/$\{segment}
+          #注意 域名映射 放在最后面
+        - id: gulimall_host_route   #配置首页网关映射
+          uri: lb://gulimall-product
+          predicates:
+            - Host=gulimall.com,item.gulimall.com
+
+        - id: gulimall_search_route   #配置search网关映射
+          uri: lb://gulimall-search
+          predicates:
+            - Host=search.gulimall.com
+        - id: gulimall_auth_route   #配置auth网关映射
+          uri: lb://gulimall-auth-server
+          predicates:
+            - Host=auth.gulimall.com
+        - id: gulimall_cart_route   #配置cart网关映射
+          uri: lb://gulimall-cart
+          predicates:
+            - Host=cart.gulimall.com
+        - id: gulimall_order_route   #配置order网关映射
+          uri: lb://gulimall-order
+          predicates:
+            - Host=order.gulimall.com
+        - id: gulimall_member_route   #配置member网关映射
+          uri: lb://gulimall-member
+          predicates:
+            - Host=member.gulimall.com
+        - id: gulimall_seckill_route   #配置seckill网关映射
+          uri: lb://gulimall-seckill
+          predicates:
+            - Host=seckill.gulimall.com
+
+
+
+
+
+
+
+
+
+server:
+  port: 88

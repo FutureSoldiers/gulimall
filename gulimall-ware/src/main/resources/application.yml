@@ -1,0 +1,27 @@
+spring:
+  rabbitmq:
+    host: 192.168.119.148
+    virtual-host: /
+    listener:
+      simple:
+        acknowledge-mode: manual   #开启ack手动模式
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://192.168.119.148:3306/gulimall_wms
+    driver-class-name: com.mysql.jdbc.Driver
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+  application:
+    name: gulimall-ware
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+mybatis-plus:
+  mapper-locations: classpath*:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type:
+server:
+  port: 11000
