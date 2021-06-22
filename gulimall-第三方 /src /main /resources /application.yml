@@ -20,15 +20,15 @@ server:
   port: 30000
 alibaba:
   cloud:
-    secret-key: 3y14Lt9B8HNGIu0eAX40MMhO5vf7n5
-    access-key: LTAI4GH9PkvF4d558TPiJwAz
+    secret-key: 
+    access-key: 
     oss:
       endpoint: oss-cn-shanghai.aliyuncs.com
       bucket: gulimall-futuresoldiers
     sms:
-      host: http://dingxin.market.alicloudapi.com
+      host: 
       path: /dx/sendSms
       tpl_id: TP1711063
-      appcode: 534f1f97159444bea31dabdce8659898
+      appcode: 
 
 
